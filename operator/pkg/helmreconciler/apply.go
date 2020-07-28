@@ -95,7 +95,7 @@ func (h *HelmReconciler) ApplyManifest(manifest name.Manifest, waitUntilReady bo
 		objList.Sort(object.DefaultObjectOrder())
 		for _, obj := range objList {
 			obju := obj.UnstructuredObject()
-			if err := h.applyLabelsAndAnnotations(obju, cname); err != nil {
+			if err := h.applyMetadata(obju, cname); err != nil {
 				return nil, 0, err
 			}
 			if err := h.ApplyObject(cname, obj.UnstructuredObject()); err != nil {
